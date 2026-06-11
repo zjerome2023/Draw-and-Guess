@@ -45,27 +45,28 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-8">
-        <h1 className="text-3xl font-bold text-white text-center mb-2">Draw & Guess</h1>
-        <p className="text-purple-200 text-center text-sm mb-8">
-          Draw, guess, and compete with friends in real time
-        </p>
-
-        <label className="block text-purple-100 text-sm mb-1">Nickname</label>
+    <div className="min-h-screen bg-shadow-gray flex flex-col gap-4 items-center justify-center p-4">
+      <h1 className="text-6xl font-titan-one text-alabaster-gray text-center mb-2 ">
+        <span className="text-cool-horizon">Draw </span>
+        <span className="text-alabaster-gray">&</span>
+        <span className="text-radioactive-grass"> Guess</span>
+      </h1>
+      <p className="text-alabaster-gray text-center text-lg mb-8"> Gather your friends and guess what they're drawing!</p>
+      <div className="max-w-md bg-dark-indigo rounded-2xl shadow-2xl border border-alabaster-gray/10 p-8">
+        <label className="block text-alabaster-gray text-sm mb-1">Nickname</label>
         <input
           type="text"
           maxLength={20}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter a nickname"
-          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4"
+          className="w-full px-4 py-3 rounded-xl bg-alabaster-gray/10 border border-alabaster-gray/20 text-white placeholder-alabaster-gray/60 focus:outline-none focus:ring-2 focus:ring-razzmatazz mb-4"
         />
 
         <button
           onClick={handleCreate}
           disabled={!canSubmit || loading}
-          className="w-full py-3 rounded-xl bg-purple-500 hover:bg-purple-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition mb-3"
+          className="w-full py-3 rounded-xl bg-razzmatazz hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition mb-3"
         >
           Create Private Lobby
         </button>
@@ -77,12 +78,12 @@ export default function Home() {
             value={roomCode}
             onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
             placeholder="Room code"
-            className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-400 uppercase"
+            className="flex-1 px-4 py-3 rounded-xl bg-alabaster-gray/10 border border-alabaster-gray/20 text-white placeholder-alabaster-gray/60 focus:outline-none focus:ring-2 focus:ring-cool-horizon uppercase"
           />
           <button
             onClick={handleJoin}
             disabled={!canSubmit || !roomCode.trim() || loading}
-            className="px-6 py-3 rounded-xl bg-indigo-500 hover:bg-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition"
+            className="px-6 py-3 rounded-xl bg-cool-horizon hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition"
           >
             Join
           </button>
@@ -94,14 +95,14 @@ export default function Home() {
             navigate('/matchmaking');
           }}
           disabled={!canSubmit}
-          className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition"
+          className="w-full py-3 rounded-xl bg-radioactive-grass hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-shadow-gray font-semibold transition"
         >
           Quick Match
         </button>
 
-        {error && <p className="mt-4 text-red-300 text-sm text-center">{error}</p>}
+        {error && <p className="mt-4 text-razzmatazz text-sm text-center">{error}</p>}
         {!connected && (
-          <p className="mt-4 text-amber-300 text-sm text-center">Connecting to server...</p>
+          <p className="mt-4 text-bright-gold text-sm text-center">Connecting to server...</p>
         )}
       </div>
     </div>

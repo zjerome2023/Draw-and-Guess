@@ -7,7 +7,7 @@ export default function ArenaView({ gameState, messages }) {
   const { isDrawer, hasGuessed, scores, strokes } = gameState;
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col">
+    <div className="min-h-screen bg-shadow-gray flex flex-col">
       <GameHeader gameState={gameState} />
 
       <div className="flex-1 p-3 md:p-4 grid grid-cols-1 lg:grid-cols-[1fr_220px] xl:grid-cols-[1fr_260px] gap-3 md:gap-4 max-h-[calc(100vh-60px)]">

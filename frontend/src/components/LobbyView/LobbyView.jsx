@@ -19,22 +19,22 @@ export default function LobbyView({ gameState, roomId }) {
   const shareUrl = `${window.location.origin}/room/${roomId}`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-shadow-gray p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-white">Lobby</h1>
+          <h1 className="text-3xl font-titan-one text-white">Lobby</h1>
           <button
             onClick={() => navigate('/')}
-            className="text-sm text-purple-300 hover:text-white transition"
+            className="text-sm text-razzmatazz hover:text-white transition"
           >
             Leave
           </button>
         </div>
 
-        <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-4 mb-6">
-          <p className="text-purple-200 text-sm">Room Code</p>
+        <div className="bg-razzmatazz/10 border border-razzmatazz/30 rounded-xl p-4 mb-6">
+          <p className="text-alabaster-gray text-sm">Room Code</p>
           <p className="text-3xl font-mono font-bold text-white tracking-widest">{roomId}</p>
-          <p className="text-xs text-purple-300 mt-2 break-all">Share: {shareUrl}</p>
+          <p className="text-xs text-cool-horizon mt-2 break-all">Share: {shareUrl}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -42,8 +42,8 @@ export default function LobbyView({ gameState, roomId }) {
           {gameState.isHost ? (
             <GameSettings settings={settings} onChange={setSettings} />
           ) : (
-            <div className="bg-slate-800/60 rounded-xl p-4 flex items-center justify-center">
-              <p className="text-slate-400 text-sm">Waiting for host to configure settings...</p>
+            <div className="bg-alabaster-gray/5 rounded-xl p-4 flex items-center justify-center border border-alabaster-gray/10">
+              <p className="text-alabaster-gray/70 text-sm">Waiting for host to configure settings...</p>
             </div>
           )}
         </div>
@@ -52,19 +52,19 @@ export default function LobbyView({ gameState, roomId }) {
           <button
             onClick={handleStart}
             disabled={gameState.scores.length < 2}
-            className="mt-6 w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-lg transition"
+            className="mt-6 w-full py-4 rounded-xl bg-radioactive-grass hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-shadow-gray font-bold text-lg transition"
           >
             Start Game ({gameState.scores.length}/2 min)
           </button>
         )}
 
         {!gameState.isHost && (
-          <p className="mt-6 text-center text-purple-300">
+          <p className="mt-6 text-center text-cool-horizon">
             Waiting for the host to start the game...
           </p>
         )}
 
-        {error && <p className="mt-4 text-red-400 text-center">{error}</p>}
+        {error && <p className="mt-4 text-razzmatazz text-center">{error}</p>}
       </div>
     </div>
   );

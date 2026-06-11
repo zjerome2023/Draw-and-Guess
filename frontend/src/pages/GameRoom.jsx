@@ -29,8 +29,8 @@ export default function GameRoom() {
 
   if (!gameState) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-purple-400 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-shadow-gray flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-razzmatazz border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }

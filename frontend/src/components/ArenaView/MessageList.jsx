@@ -13,11 +13,11 @@ export default function MessageList({ messages }) {
         <div
           key={msg.id}
           className={`text-sm ${
-            msg.type === 'system' ? 'text-amber-400 italic' : 'text-slate-200'
+            msg.type === 'system' ? 'text-bright-gold italic' : 'text-alabaster-gray'
           }`}
         >
           {msg.type !== 'system' && (
-            <span className="font-semibold text-purple-300 mr-1">{msg.username}:</span>
+            <span className="font-semibold text-cool-horizon mr-1">{msg.username}:</span>
           )}
           {msg.type === 'system' ? msg.text : msg.text}
         </div>
