@@ -30,14 +30,14 @@ export default function Matchmaking() {
   }, [socket, username, navigate]);
 
   return (
-    <div className="min-h-screen bg-shadow-gray flex items-center justify-center p-4">
+    <div className="min-h-screen bg-midnight-violet flex items-center justify-center p-4">
       <div className="text-center">
-        <div className="w-16 h-16 border-4 border-razzmatazz border-t-transparent rounded-full animate-spin mx-auto mb-6" />
-        <h2 className="text-2xl font-bold text-white mb-2">Finding a match...</h2>
-        <p className="text-alabaster-gray">Queue position: {position}</p>
+        <div className="w-16 h-16 border-4 border-hyper-magenta border-t-transparent rounded-full animate-spin mx-auto mb-6" />
+        <h2 className="text-2xl font-bold text-platinum mb-2">Finding a match...</h2>
+        <p className="text-platinum/80">Queue position: {position}</p>
         <button
           onClick={() => navigate('/')}
-          className="mt-8 px-6 py-2 rounded-lg bg-alabaster-gray/10 text-alabaster-gray hover:bg-alabaster-gray/20 transition"
+          className="mt-8 px-6 py-2 rounded-lg bg-platinum/10 text-platinum hover:bg-platinum/20 transition"
         >
           Cancel
         </button>

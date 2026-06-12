@@ -45,28 +45,28 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-shadow-gray flex flex-col gap-4 items-center justify-center p-4">
-      <h1 className="text-6xl font-titan-one text-alabaster-gray text-center mb-2 ">
+    <div className="min-h-screen bg-midnight-violet flex flex-col gap-4 items-center justify-center p-4">
+      <h1 className="text-6xl font-titan-one text-platinum text-center mb-2 ">
         <span className="text-cool-horizon">Draw </span>
-        <span className="text-alabaster-gray">&</span>
-        <span className="text-radioactive-grass"> Guess</span>
+        <span className="text-platinum">&</span>
+        <span className="text-neon-ice"> Guess</span>
       </h1>
-      <p className="text-alabaster-gray text-center text-lg mb-8"> Gather your friends and guess what they're drawing!</p>
-      <div className="max-w-md bg-dark-indigo rounded-2xl shadow-2xl border border-alabaster-gray/10 p-8">
-        <label className="block text-alabaster-gray text-sm mb-1">Nickname</label>
+      <p className="text-platinum/80 text-center text-lg mb-8"> Gather your friends and guess what they're drawing!</p>
+      <div className="max-w-md bg-midnight-violet rounded-2xl shadow-2xl border border-platinum/15 p-8">
+        <label className="block text-platinum text-sm mb-1">Nickname</label>
         <input
           type="text"
           maxLength={20}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter a nickname"
-          className="w-full px-4 py-3 rounded-xl bg-alabaster-gray/10 border border-alabaster-gray/20 text-white placeholder-alabaster-gray/60 focus:outline-none focus:ring-2 focus:ring-razzmatazz mb-4"
+          className="w-full px-4 py-3 rounded-xl bg-platinum/10 border border-platinum/20 text-white placeholder-platinum/50 focus:outline-none focus:ring-2 focus:ring-hyper-magenta mb-4"
         />
 
         <button
           onClick={handleCreate}
           disabled={!canSubmit || loading}
-          className="w-full py-3 rounded-xl bg-razzmatazz hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition mb-3"
+          className="w-full py-3 rounded-xl bg-hyper-magenta hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition mb-3"
         >
           Create Private Lobby
         </button>
@@ -78,12 +78,12 @@ export default function Home() {
             value={roomCode}
             onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
             placeholder="Room code"
-            className="flex-1 px-4 py-3 rounded-xl bg-alabaster-gray/10 border border-alabaster-gray/20 text-white placeholder-alabaster-gray/60 focus:outline-none focus:ring-2 focus:ring-cool-horizon uppercase"
+            className="flex-1 px-4 py-3 rounded-xl bg-platinum/10 border border-platinum/20 text-white placeholder-platinum/50 focus:outline-none focus:ring-2 focus:ring-cool-horizon uppercase"
           />
           <button
             onClick={handleJoin}
             disabled={!canSubmit || !roomCode.trim() || loading}
-            className="px-6 py-3 rounded-xl bg-cool-horizon hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition"
+            className="px-6 py-3 rounded-xl bg-cool-horizon hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-midnight-violet font-semibold transition"
           >
             Join
           </button>
@@ -95,14 +95,14 @@ export default function Home() {
             navigate('/matchmaking');
           }}
           disabled={!canSubmit}
-          className="w-full py-3 rounded-xl bg-radioactive-grass hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-shadow-gray font-semibold transition"
+          className="w-full py-3 rounded-xl bg-neon-ice hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-midnight-violet font-semibold transition"
         >
           Quick Match
         </button>
 
-        {error && <p className="mt-4 text-razzmatazz text-sm text-center">{error}</p>}
+        {error && <p className="mt-4 text-hyper-magenta text-sm text-center">{error}</p>}
         {!connected && (
-          <p className="mt-4 text-bright-gold text-sm text-center">Connecting to server...</p>
+          <p className="mt-4 text-canary-yellow text-sm text-center">Connecting to server...</p>
         )}
       </div>
     </div>

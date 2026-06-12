@@ -13,7 +13,7 @@ export default function MessageList({ messages }) {
         <div
           key={msg.id}
           className={`text-sm ${
-            msg.type === 'system' ? 'text-bright-gold italic' : 'text-alabaster-gray'
+            msg.type === 'system' ? 'text-canary-yellow italic' : 'text-platinum'
           }`}
         >
           {msg.type !== 'system' && (

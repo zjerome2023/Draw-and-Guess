@@ -2,13 +2,13 @@ const CATEGORIES = ['General', 'Animals', 'Food', 'Tech'];
 
 export default function GameSettings({ settings, onChange, disabled }) {
   return (
-    <div className="bg-alabaster-gray/5 rounded-xl p-4 space-y-4 border border-alabaster-gray/10">
-      <h3 className="text-sm font-semibold text-razzmatazz uppercase tracking-wide">
+    <div className="bg-midnight-violet rounded-xl p-4 space-y-4 border border-platinum/10">
+      <h3 className="text-sm font-semibold text-hyper-magenta uppercase tracking-wide">
         Game Settings
       </h3>
 
       <div>
-        <label className="text-sm text-alabaster-gray">Rounds per player</label>
+        <label className="text-sm text-platinum">Rounds per player</label>
         <input
           type="range"
           min={1}
@@ -16,13 +16,13 @@ export default function GameSettings({ settings, onChange, disabled }) {
           value={settings.rounds}
           disabled={disabled}
           onChange={(e) => onChange({ ...settings, rounds: Number(e.target.value) })}
-          className="w-full accent-razzmatazz"
+          className="w-full accent-hyper-magenta"
         />
-        <span className="text-white text-sm">{settings.rounds}</span>
+        <span className="text-platinum text-sm">{settings.rounds}</span>
       </div>
 
       <div>
-        <label className="text-sm text-alabaster-gray">Draw time (seconds)</label>
+        <label className="text-sm text-platinum">Draw time (seconds)</label>
         <input
           type="range"
           min={30}
@@ -31,13 +31,13 @@ export default function GameSettings({ settings, onChange, disabled }) {
           value={settings.drawTime}
           disabled={disabled}
           onChange={(e) => onChange({ ...settings, drawTime: Number(e.target.value) })}
-          className="w-full accent-razzmatazz"
+          className="w-full accent-hyper-magenta"
         />
-        <span className="text-white text-sm">{settings.drawTime}s</span>
+        <span className="text-platinum text-sm">{settings.drawTime}s</span>
       </div>
 
       <div>
-        <label className="text-sm text-alabaster-gray block mb-2">Word categories</label>
+        <label className="text-sm text-platinum block mb-2">Word categories</label>
         <div className="flex flex-wrap gap-2">
           {CATEGORIES.map((cat) => {
             const selected = settings.categories.includes(cat);
@@ -54,8 +54,8 @@ export default function GameSettings({ settings, onChange, disabled }) {
                 }}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition ${
                   selected
-                    ? 'bg-razzmatazz text-white'
-                    : 'bg-alabaster-gray/10 text-alabaster-gray hover:bg-alabaster-gray/20'
+                    ? 'bg-hyper-magenta text-white'
+                    : 'bg-platinum/10 text-platinum hover:bg-platinum/20'
                 } disabled:opacity-50`}
               >
                 {cat}

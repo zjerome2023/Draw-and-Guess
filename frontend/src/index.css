@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 @import "tailwindcss";
 
 @theme {
-    --color-shadow-gray: #161618;
-    --color-alabaster-gray: #e8e8e8;
-    --color-razzmatazz: #e3066a;
-    --color-bright-gold: #f5d400;
-    --color-radioactive-grass: #4cdb45;
-    --color-dark-indigo: #231F38;
-    --color-cool-horizon: #51a2f3;
+    --color-midnight-violet: #190029;
+    --color-hot-fuschia: #ff2368;
+    --color-hyper-magenta: #b540fd;
+    --color-cool-horizon: #66a3ff;
+    --color-electric-green: #6dff53;
+    --color-neon-ice: #48f856;
+    --color-canary-yellow: #fff767;
+    --color-platinum: #f1f1f1;
     --font-titan-one: 'Titan One', cursive;
 }
 
 @layer base {
     body {
-        background-color: var(--color-shadow-gray);
-        color: var(--color-alabaster-gray);
+        background-color: var(--color-midnight-violet);
+        color: var(--color-platinum);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }

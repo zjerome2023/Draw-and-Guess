@@ -4,14 +4,16 @@ import { drawStroke, redrawCanvas, toNormalized } from '../../utils/canvas';
 import ToolBar from './ToolBar';
 
 const THROTTLE_MS = 16;
+const EMPTY_STROKES = [];
 
-export default function GameCanvas({ isDrawer, initialStrokes = [] }) {
+export default function GameCanvas({ isDrawer, initialStrokes = EMPTY_STROKES }) {
   const { socket } = useSocket();
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const drawing = useRef(false);
   const lastPoint = useRef(null);
   const strokesRef = useRef([...initialStrokes]);
+  const lastSyncedStrokes = useRef(initialStrokes);
   const lastEmit = useRef(0);
 
   const [color, setColor] = useState('#190029');
@@ -36,6 +38,8 @@ export default function GameCanvas({ isDrawer, initialStrokes = [] }) {
   }, []);
 
   useEffect(() => {
+    if (initialStrokes === lastSyncedStrokes.current) return;
+    lastSyncedStrokes.current = initialStrokes;
     strokesRef.current = [...initialStrokes];
     resizeCanvas();
   }, [initialStrokes, resizeCanvas]);
