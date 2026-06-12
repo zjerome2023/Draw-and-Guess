@@ -14,7 +14,7 @@ export default function GameCanvas({ isDrawer, initialStrokes = [] }) {
   const strokesRef = useRef([...initialStrokes]);
   const lastEmit = useRef(0);
 
-  const [color, setColor] = useState('#000000');
+  const [color, setColor] = useState('#190029');
   const [size, setSize] = useState(6);
 
   const resizeCanvas = useCallback(() => {
