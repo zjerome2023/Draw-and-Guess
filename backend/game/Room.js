@@ -1,4 +1,12 @@
+import crypto from 'crypto';
 import { getRandomWords } from '../services/wordService.js';
+import {
+  MAX_STROKES_PER_ROUND,
+  sanitizeSettings,
+  validateMessage,
+  validateWordChoice,
+  validateStroke,
+} from '../utils/validation.js';
 
 const BASE_GUESS_POINTS = 100;
 const DRAWER_POINTS_PER_GUESSER = 30;
@@ -10,7 +18,7 @@ const WORD_SELECT_SECONDS = 15;
 const ROUND_END_SECONDS = 8;
 
 function generateRoomId() {
-  return Math.random().toString(36).substring(2, 8).toUpperCase();
+  return crypto.randomBytes(4).toString('hex').toUpperCase();
 }
 
 function buildHiddenWord(word) {
@@ -26,11 +34,7 @@ export class Room {
     this.hostId = hostSocket.id;
     this.isPublic = isPublic;
     this.players = new Map();
-    this.settings = {
-      rounds: settings.rounds ?? 3,
-      drawTime: settings.drawTime ?? 60,
-      categories: settings.categories ?? [],
-    };
+    this.settings = sanitizeSettings(settings);
     this.phase = 'LOBBY';
     this.currentRound = 0;
     this.currentDrawerIndex = 0;
@@ -132,7 +136,7 @@ export class Room {
     if (!this.canStart()) return { error: 'Need at least 2 players to start' };
 
     if (settings) {
-      this.settings = { ...this.settings, ...settings };
+      this.settings = sanitizeSettings({ ...this.settings, ...settings });
     }
 
     this.currentRound = 1;
@@ -170,7 +174,10 @@ export class Room {
     const drawerId = this.getDrawerId();
     if (!drawerId) return { error: 'No drawer assigned' };
 
-    this.secretWord = (word || this.wordChoices[0] || 'house').toLowerCase().trim();
+    const wordResult = validateWordChoice(word, this.wordChoices);
+    if (!wordResult.ok) return { error: wordResult.error };
+
+    this.secretWord = wordResult.value.toLowerCase().trim();
     this.phase = 'DRAWING';
     this.strokes = [];
     this.timer = this.settings.drawTime;
@@ -186,15 +193,10 @@ export class Room {
 
   handleStroke(socketId, data) {
     if (this.phase !== 'DRAWING' || socketId !== this.getDrawerId()) return;
+    if (this.strokes.length >= MAX_STROKES_PER_ROUND) return;
 
-    const stroke = {
-      x: data.x,
-      y: data.y,
-      prevX: data.prevX,
-      prevY: data.prevY,
-      color: data.color || '#000000',
-      size: data.size || 4,
-    };
+    const stroke = validateStroke(data);
+    if (!stroke) return;
 
     this.strokes.push(stroke);
     this.io?.to(this.id).emit('draw_stroke', stroke);
@@ -222,8 +224,10 @@ export class Room {
     const player = this.players.get(socketId);
     if (!player) return;
 
-    const trimmed = message.trim();
-    if (!trimmed) return;
+    const messageResult = validateMessage(message);
+    if (!messageResult.ok) return;
+
+    const trimmed = messageResult.value;
 
     if (socketId === this.getDrawerId()) {
       this.addSystemMessage(`${player.username} tried to chat but the drawer cannot send messages.`);

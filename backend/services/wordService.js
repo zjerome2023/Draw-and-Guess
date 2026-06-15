@@ -1,5 +1,6 @@
 import Word from '../models/Word.js';
 import { DEFAULT_WORDS } from '../data/defaultWords.js';
+import { sanitizeCategories } from '../utils/validation.js';
 
 let dbAvailable = false;
 
@@ -8,9 +9,11 @@ export function setDbAvailable(available) {
 }
 
 export async function getRandomWords(count = 3, categories = []) {
+  const safeCategories = sanitizeCategories(categories);
+
   if (dbAvailable) {
     try {
-      const filter = categories.length ? { category: { $in: categories } } : {};
+      const filter = safeCategories.length ? { category: { $in: safeCategories } } : {};
       const words = await Word.aggregate([
         { $match: filter },
         { $sample: { size: count } },
@@ -23,8 +26,8 @@ export async function getRandomWords(count = 3, categories = []) {
     }
   }
 
-  const pool = categories.length
-    ? DEFAULT_WORDS.filter((w) => categories.includes(w.category))
+  const pool = safeCategories.length
+    ? DEFAULT_WORDS.filter((w) => safeCategories.includes(w.category))
     : DEFAULT_WORDS;
 
   const shuffled = [...pool].sort(() => Math.random() - 0.5);

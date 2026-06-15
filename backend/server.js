@@ -10,6 +10,7 @@ import { registerSocketHandlers } from './socket/index.js';
 import { setDbAvailable, seedWords } from './services/wordService.js';
 import { gameManager } from './game/GameManager.js';
 import UserStat from './models/UserStat.js';
+import { validateUsername } from './utils/validation.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -33,11 +34,17 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.get('/api/stats/:username', async (req, res) => {
+  const userResult = validateUsername(req.params.username);
+  if (!userResult.ok) {
+    res.status(400).json({ error: userResult.error });
+    return;
+  }
+
   try {
-    const stat = await UserStat.findOne({ username: req.params.username.toLowerCase() });
-    res.json(stat || { username: req.params.username, gamesPlayed: 0 });
+    const stat = await UserStat.findOne({ username: userResult.value.toLowerCase() });
+    res.json(stat || { username: userResult.value, gamesPlayed: 0 });
   } catch {
-    res.json({ username: req.params.username, gamesPlayed: 0 });
+    res.json({ username: userResult.value, gamesPlayed: 0 });
   }
 });
 

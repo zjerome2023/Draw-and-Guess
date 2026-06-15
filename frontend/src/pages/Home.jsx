@@ -81,7 +81,7 @@ export default function Home() {
         <div className="flex gap-2 mb-3">
           <input
             type="text"
-            maxLength={6}
+            maxLength={8}
             value={roomCode}
             onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
             placeholder="Room code"
