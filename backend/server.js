@@ -1,6 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { connectDB } from './config/db.js';
@@ -8,6 +10,8 @@ import { registerSocketHandlers } from './socket/index.js';
 import { setDbAvailable, seedWords } from './services/wordService.js';
 import { gameManager } from './game/GameManager.js';
 import UserStat from './models/UserStat.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const httpServer = createServer(app);
@@ -38,6 +42,14 @@ app.get('/api/stats/:username', async (req, res) => {
 });
 
 registerSocketHandlers(io);
+
+if (process.env.NODE_ENV === 'production') {
+  const distPath = path.join(__dirname, '../frontend/dist');
+  app.use(express.static(distPath));
+  app.get(/^(?!\/api|\/socket\.io).*/, (_req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 async function start() {
   const dbConnected = await connectDB();
