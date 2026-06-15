@@ -45,11 +45,18 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-midnight-violet flex flex-col gap-4 items-center justify-center p-4">
+    <div className="min-h-screen bg-midnight-violet flex flex-col gap-6 items-center justify-center py-12 px-4">
       <h1 className="text-6xl font-titan-one text-platinum text-center mb-2 ">
-        <span className="text-cool-horizon">Draw </span>
-        <span className="text-platinum">&</span>
-        <span className="text-neon-ice"> Guess</span>
+        <span className="text-hot-fuschia">D</span>
+        <span className="text-canary-yellow">r</span>
+        <span className="text-neon-ice">a</span>
+        <span className="text-cool-horizon">w</span>
+        <span className="text-platinum"> & </span>
+        <span className="text-hyper-magenta">G</span>
+        <span className="text-hot-fuschia">u</span>
+        <span className="text-canary-yellow">e</span>
+        <span className="text-neon-ice">s</span>
+        <span className="text-cool-horizon">s</span>
       </h1>
       <p className="text-platinum/80 text-center text-lg mb-8"> Gather your friends and guess what they're drawing!</p>
       <div className="max-w-md bg-midnight-violet rounded-2xl shadow-2xl border border-platinum/15 p-8">
@@ -105,6 +112,28 @@ export default function Home() {
           <p className="mt-4 text-canary-yellow text-sm text-center">Connecting to server...</p>
         )}
       </div>
+
+      <section className="max-w-md w-full bg-midnight-violet rounded-2xl shadow-2xl border border-platinum/15 p-8">
+        <h2 className="text-2xl font-titan-one text-platinum text-center mb-6">How to Play</h2>
+        <ol className="space-y-4 text-platinum/80 text-sm">
+          <li className="flex gap-3">
+            <span className="shrink-0 w-6 h-6 rounded-full bg-hyper-magenta/20 text-hyper-magenta font-semibold flex items-center justify-center text-xs">1</span>
+            <span>Enter a nickname and create a lobby, join with a room code, or use Quick Match.</span>
+          </li>
+          <li className="flex gap-3">
+            <span className="shrink-0 w-6 h-6 rounded-full bg-cool-horizon/20 text-cool-horizon font-semibold flex items-center justify-center text-xs">2</span>
+            <span>Wait for at least 2 players (up to 8). The host starts the game and sets rounds, draw time, and categories.</span>
+          </li>
+          <li className="flex gap-3">
+            <span className="shrink-0 w-6 h-6 rounded-full bg-neon-ice/20 text-neon-ice font-semibold flex items-center justify-center text-xs">3</span>
+            <span>Each turn, one player picks from 3 words and draws on the canvas while others guess in chat.</span>
+          </li>
+          <li className="flex gap-3">
+            <span className="shrink-0 w-6 h-6 rounded-full bg-canary-yellow/20 text-canary-yellow font-semibold flex items-center justify-center text-xs">4</span>
+            <span>Faster correct guesses earn more points. After all rounds, the highest score wins!</span>
+          </li>
+        </ol>
+      </section>
     </div>
   );
 }
